@@ -15,19 +15,19 @@
 <div id="app">
 
 	<div v-for="message in message" :class="{'male':message.class}">{{ message.messager }}</div>
-	
-
+    <hr>
+    <div>{{input}}</div>
+    <input type="text" v-model="input">
 	<hr>
-
 	<ul>
 		<li v-for="bear in bears" v-bind:class="{'strike':bear.status}">{{bear.name}}</li>
 	</ul>
-
 </div>
 <script>
 var app = new Vue({
   el: '#app',
   data: {
+    input:'inputText',
     message: [
     	{
     		messager: 'Hello Vue1!',
@@ -45,12 +45,6 @@ var app = new Vue({
     		messager: 'Hello Vue4!',
     		class: false
     	}
-    ],
-    numbers: [
-    	'1',
-    	'2',
-    	'3',
-    	'4'
     ],
     bears:[
     	{
