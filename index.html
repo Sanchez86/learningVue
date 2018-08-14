@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Vue start</title>
-	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+	
 	<style>
 		.strike{
 			text-decoration: line-through;
@@ -13,60 +13,41 @@
 <body>
 
 <div id="app">
+    
+<button v-on:click.prevent="onClick">button{{button}}</button>
+<hr>
 
-	<div v-for="message in message" :class="{'male':message.class}">{{ message.messager }}</div>
-    <hr>
-    <div>{{input}}</div>
-    <input type="text" v-model="input">
-	<hr>
-	<ul>
-		<li v-for="bear in bears" v-bind:class="{'strike':bear.status}">{{bear.name}}</li>
-	</ul>
-    <hr>
+<input type="text" v-model="message" v-on:keyup.13="onClick">
+<hr>
+
+<textarea v-on: cols="30" rows="10" v-model="messageTextarea" v-on:keyup.13="onClicktextarea"></textarea>
+<hr>
+
+<input placeholder="for button" type="text" v-model="button">
+<hr>
+
+
+
 </div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 <script>
 var app = new Vue({
   el: '#app',
-  data: {
-    input:'inputText',
-    message: [
-    	{
-    		messager: 'Hello Vue1!',
-    		class: true
-    	},
-    	{
-    		messager: 'Hello Vue2!',
-    		class: true
-    	},
-    	{
-    		messager: 'Hello Vue3!',
-    		class: true
-    	},
-    	{
-    		messager: 'Hello Vue4!',
-    		class: false
-    	}
-    ],
-    bears:[
-    	{
-    		name:'bear1',
-    		status: false
-    	},
-    	{
-    		name:'bear2',
-    		status: false
-    	},
-    	{
-    		name:'bear3',
-    		status: true
-    	},
-    	{
-    		name:'bear4',
-    		status: false
-    	}
-    ]
+  data:{
+    message:'',
+    messageTextarea:'',
+    button:'',
+    pressEnter:''
+  },
+  methods: {
+    onClick: function(){
+        console.log(this.message);
+    },
+    onClicktextarea: function(){
+        console.log(this.messageTextarea);
+    }
   }
-})
+});
 </script>
 </body>
 </html>
