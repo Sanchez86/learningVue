@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue start</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+	<style>
+		.strike{
+			text-decoration: line-through;
+		}
+	</style>
+</head>
+<body>
+
+<div id="app">
+
+	<div v-for="message in message" :class="{'male':message.class}">{{ message.messager }}</div>
+	
+
+	<hr>
+
+	<ul>
+		<li v-for="bear in bears" v-bind:class="{'strike':bear.status}">{{bear.name}}</li>
+	</ul>
+
+</div>
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: [
+    	{
+    		messager: 'Hello Vue1!',
+    		class: true
+    	},
+    	{
+    		messager: 'Hello Vue2!',
+    		class: true
+    	},
+    	{
+    		messager: 'Hello Vue3!',
+    		class: true
+    	},
+    	{
+    		messager: 'Hello Vue4!',
+    		class: false
+    	}
+    ],
+    numbers: [
+    	'1',
+    	'2',
+    	'3',
+    	'4'
+    ],
+    bears:[
+    	{
+    		name:'bear1',
+    		status: false
+    	},
+    	{
+    		name:'bear2',
+    		status: false
+    	},
+    	{
+    		name:'bear3',
+    		status: true
+    	},
+    	{
+    		name:'bear4',
+    		status: false
+    	}
+    ]
+  }
+})
+</script>
+</body>
+</html>
