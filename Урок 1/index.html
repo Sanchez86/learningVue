@@ -10,45 +10,127 @@
             height: 400px;
             background-color: #333;
         }
+      table{
+          max-width: 500px;
+          width: 100%; 
+      }
+      table td {
+        padding: 10px;
+        border: 1px solid #333;
+        width: 50%;
+      }
 	</style>
 </head>
 <body>
 <div id="app">
-        
-    <button v-on:click="toggleName">Hedden</button>
-    <button v-on:click="showName2 = !showName2">Hedden2</button>
-    <hr>
+  <div v-if="disdplayForm">
+  <form action="#">
+      <table>
+        <tr>
+          <td>Email</td>
+          <td><input type="text" v-model="email" required /></td>
+        </tr>
+        <tr>
+          <td>First name</td>
+          <td><input type="text" v-model="firstName" required /></td>
+        </tr>
+        <tr>
+          <td>Last name</td>
+          <td><input type="text" v-model="lastName" required /></td>
+        </tr>
+        <tr>
+          <td>Phone</td>
+          <td><input type="text" v-model="phone" required /></td>
+        </tr>
+        <tr>
+          <td>sex</td>
+          <td><input type="text" v-model="sex" required /></td>
+        </tr>
+      </table>
+          
+      <p>
+        <span>Add yor guests</span>
+        <button type="button" v-on:click="addNumber">+</button>
+      </p>
 
-    <h1 v-if="showName">HELLO</h1>
-    <hr>
-    <h1 v-if="showName2">HELLO</h1>
-    <hr>
-    <div>{{ toggleName }}</div>
+      <table v-if="display">
+        <th>
+          <td>List added guestes</td>
+        </th>
+        <tr v-for="(guest, index) in additionalGuests">
+          <td>Guest {{index+1}}</td>
+          <td><input type="text" placeholder="Guest neme" v-model="additionalGuests[index]" /></td>
+        </tr>
+      </table>
 
-
-
+      <p>
+        <input type="button" value="send data" v-on:click="goRequerst" />
+      </p>
+  </form>
+  </div>
+  <hr>
+  <div v-if="dataGuests">
+    <table>
+      <tr v-for="">
+        <td>email</td>
+        <td>{{email}}</td>
+      </tr>
+      <tr>
+        <td>First name</td>
+        <td>{{firstName}}</td>
+      </tr>
+      <tr>
+        <td>Last name</td>
+        <td>{{lastName}}</td>
+      </tr>
+      <tr>
+        <td>Phone</td>
+        <td>{{phone}}</td>
+      </tr>
+       <tr>
+        <td>Sex</td>
+        <td>{{sex}}</td>
+      </tr>
+      <tr>
+        <td>Guests</td>
+        <td>
+          <table>
+            <tr v-for="guest in additionalGuests">
+              <td>{{guest}}</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 <script>
 let app = new Vue({
   el: '#app',
   data:{
-    showName:true,
-    showName2:true
+    email:'',
+    firstName:'',
+    lastName:'',
+    phone:'',
+    display:false,
+    gName:"",
+    additionalGuests:[],
+    disdplayForm:true,
+    dataGuests:true,
+    sex:""
   },
   methods:{
-    toggleName(){
-        console.log('render toggleName');
-        //this.showName = !this.showName;  
-        return 1  
-    }
+     addNumber(){
+        this.display = true;
+        this.additionalGuests.push("");
+      },
+      goRequerst(){
+        this.disdplayForm = false,
+        this.dataGuests=true,
+        this.allGuests.push(this.gName);
+      }
   }
-  /*,
-  computed:{
-        testFun(){
-            console.log(1)
-        }
-    }*/ 
 });
 </script>
 </body>
