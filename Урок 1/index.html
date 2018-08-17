@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue start</title>
+	
+	<style>
+		.box{
+            width: 400px;
+            height: 400px;
+            background-color: #333;
+        }
+	</style>
+</head>
+<body>
+<div id="app">
+        
+    <button v-on:click="toggleName">Hedden</button>
+    <button v-on:click="showName2 = !showName2">Hedden2</button>
+    <hr>
+
+    <h1 v-if="showName">HELLO</h1>
+    <hr>
+    <h1 v-if="showName2">HELLO</h1>
+    <hr>
+    <div>{{ toggleName }}</div>
+
+
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script>
+let app = new Vue({
+  el: '#app',
+  data:{
+    showName:true,
+    showName2:true
+  },
+  methods:{
+    toggleName(){
+        console.log('render toggleName');
+        //this.showName = !this.showName;  
+        return 1  
+    }
+  }
+  /*,
+  computed:{
+        testFun(){
+            console.log(1)
+        }
+    }*/ 
+});
+</script>
+</body>
+</html>
